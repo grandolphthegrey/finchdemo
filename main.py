@@ -74,8 +74,11 @@ def getIndividual():
     payload={'requests':[{'individual_id':provider}]}
     #make API call to individual endpoint
     r = requests.post(url+'/employer/individual',headers=header,json=payload)
+    print(r.content)
     #convert output to HTML
-    tbl = pd.DataFrame(flatten(r.json()['responses'][0]),index=['info']).T.to_html()
+    arr = flatten(r.json()['responses'][0])
+    arr = {k:(None if isinstance(v, list) else v) for k,v in arr.items()}
+    tbl = pd.DataFrame(arr,index=['info']).T.to_html()
     #display output
     return render_template('employee.html', table=tbl)
 
@@ -91,7 +94,9 @@ def getEmployment():
     r = requests.post(url+'/employer/employment',headers=header,json=payload)
     print(r.content)
     #convert output to HTML
-    tbl = pd.DataFrame(flatten(r.json()['responses'][0]),index=['info']).T.to_html()
+    arr = flatten(r.json()['responses'][0])
+    arr = {k:(None if isinstance(v, list) else v) for k,v in arr.items()}
+    tbl = pd.DataFrame(arr,index=['info']).T.to_html()
     #display output
     return render_template('employee.html', table=tbl)
   
