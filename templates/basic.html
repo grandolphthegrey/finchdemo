@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+{{ table | safe }}
+<br>
+<br>
+<a href = 'http://127.0.0.1:5000/directory'>click here to see the directory</a>
+<br>
+<br>
+<h3>Paste relevant IDs below to get info</h3>
+<form action="http://127.0.0.1:5000/individual" method='post'>
+  
+  <label for="name">Individual:</label><br>
+  <input type="text" name='individual'><br>
+  
+  <input type="submit" value="Submit"><br>
+</form>
+<form action="http://127.0.0.1:5000/employment" method='post'>
+  <label for="name">Employment:</label><br>
+  <input type="text" name='employment'><br>
+  
+  <input type="submit" value="Submit"><br>
+</form> 
+</body>
+</html>
